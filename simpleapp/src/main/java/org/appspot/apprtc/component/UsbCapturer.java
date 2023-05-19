@@ -1,4 +1,4 @@
-package com.example.simpleapp;
+package org.appspot.apprtc.component;
 
 import android.content.Context;
 import android.hardware.usb.UsbDevice;
@@ -13,7 +13,6 @@ import android.view.SurfaceView;
 import org.webrtc.CapturerObserver;
 import org.webrtc.NV21Buffer;
 import org.webrtc.SurfaceTextureHelper;
-import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.VideoCapturer;
 import org.webrtc.VideoFrame;
 
@@ -39,9 +38,6 @@ public class UsbCapturer implements VideoCapturer, USBMonitor.OnDeviceConnectLis
     private boolean isRegister;
     private USBMonitor.UsbControlBlock ctrlBlock;
     private Handler handler;
-
-    //宣告特約工人
-
     private HandlerThread handlerThread;
     private boolean isActive, isPreview;
     private int DEFAULT_PREVIEW_WIDTH = 640;

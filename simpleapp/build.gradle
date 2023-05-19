@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.simpleapp'
+//    namespace 'org.appspot.apprtc'
     compileSdkVersion versionCompiler
 
     defaultConfig {
-        applicationId "com.example.simpleapp"
+        applicationId "org.appspot.webuvc"
         minSdkVersion 27
         targetSdkVersion 33
         versionCode 1
@@ -29,6 +29,8 @@ android {
 }
 
 dependencies {
+
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
 
     implementation "androidx.appcompat:appcompat:${androidXVersion}"
     implementation "com.google.android.material:material:${materialVersion}"
