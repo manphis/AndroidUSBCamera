@@ -54,6 +54,12 @@
             android:configChanges="orientation|smallestScreenSize|screenSize|screenLayout"
             android:theme="@style/CallActivityTheme">
         </activity>
+
+        <activity android:name=".component.MainActivity"
+            android:label="test_main"
+            android:theme="@style/AppTheme">
+        </activity>
+
     </application>
 
 </manifest>

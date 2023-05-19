@@ -22,6 +22,11 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"/>
 
+<!--    <SurfaceView-->
+<!--        android:id="@+id/camera_surface_view"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp" />-->
+
     <FrameLayout
         android:id="@+id/call_fragment_container"
         android:layout_width="match_parent"

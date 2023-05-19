@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,6 +44,7 @@ import org.appspot.apprtc.AppRTCClient.RoomConnectionParameters;
 import org.appspot.apprtc.AppRTCClient.SignalingParameters;
 import org.appspot.apprtc.PeerConnectionClient.DataChannelParameters;
 import org.appspot.apprtc.PeerConnectionClient.PeerConnectionParameters;
+import org.appspot.apprtc.component.UsbCapturer;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
@@ -129,6 +131,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
   // Peer connection statistics callback period in ms.
   private static final int STAT_CALLBACK_PERIOD = 1000;
+
+  private static final boolean USE_USB_CAM = true;
 
   private static class ProxyVideoSink implements VideoSink {
     private VideoSink target;
@@ -703,6 +707,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
       }
     } else if (screencaptureEnabled) {
       return createScreenCapturer();
+    } else if (USE_USB_CAM) {
+      videoCapturer = new UsbCapturer(getApplicationContext(), pipRenderer);
     } else if (useCamera2()) {
       if (!captureToTexture()) {
         reportError(getString(R.string.camera2_texture_only_error));
@@ -715,6 +721,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
       Logging.d(TAG, "Creating capturer using camera1 API.");
       videoCapturer = createCameraCapturer(new Camera1Enumerator(captureToTexture()));
     }
+
     if (videoCapturer == null) {
       reportError("Failed to open camera");
       return null;
